@@ -11,7 +11,20 @@ const LINKS: { label: string; href: string; primary?: boolean }[] = [
 /** CONTACT — a dial-up / send-message terminal. */
 export function Contact() {
   return (
-    <section id="contact" className="px-6 py-24 sm:py-32">
+    <section id="contact" className="relative px-6 py-24 sm:py-32">
+      <span
+        aria-hidden
+        className="font-display pointer-events-none absolute left-[9%] top-[22%] hidden -rotate-12 text-5xl text-y2k-sky [text-shadow:3px_3px_0_var(--y2k-ink)] lg:block"
+      >
+        ✦
+      </span>
+      <span
+        aria-hidden
+        className="font-display pointer-events-none absolute right-[10%] bottom-[20%] hidden rotate-12 text-4xl text-y2k-pink-hot [text-shadow:3px_3px_0_var(--y2k-ink)] lg:block"
+      >
+        ❤
+      </span>
+
       <div className="mx-auto max-w-2xl">
         <Reveal>
           <Window title="contact.exe" role="region" tilt={0.4}>

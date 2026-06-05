@@ -484,6 +484,93 @@ textarea,
   }
   .hgal[data-active="true"] .hgal__card {
     flex: 0 0 auto;
-    width: min(78vw, 440px);
+    width: min(84vw, 500px);
+  }
+
+  /* ---- Monitor screen (Work screenshots) ---- */
+  .y2k-screen {
+    border: var(--y2k-border);
+    border-radius: 4px;
+    background: var(--y2k-ink);
+    box-shadow: var(--y2k-bevel-in);
+    overflow: hidden;
+  }
+  .y2k-screen__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--y2k-2);
+    padding: 3px var(--y2k-2);
+    background: var(--y2k-lilac);
+    border-bottom: var(--y2k-border);
+  }
+  .y2k-screen__dots {
+    display: inline-flex;
+    gap: 4px;
+  }
+  .y2k-screen__dots i {
+    width: 9px;
+    height: 9px;
+    border: 1.5px solid var(--y2k-ink);
+    border-radius: 50%;
+  }
+  .y2k-screen__dots i:nth-child(1) { background: var(--y2k-pink); }
+  .y2k-screen__dots i:nth-child(2) { background: var(--y2k-butter); }
+  .y2k-screen__dots i:nth-child(3) { background: var(--y2k-mint); }
+  .y2k-screen__url {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 1px var(--y2k-2);
+    background: var(--y2k-surface);
+    border: 1px solid var(--y2k-ink);
+    border-radius: 999px;
+    font-family: var(--font-w95fa), sans-serif;
+    font-size: 11px;
+    color: color-mix(in srgb, var(--y2k-ink) 75%, transparent);
+  }
+  .y2k-screen__view {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: var(--y2k-surface-alt);
+  }
+  .y2k-screen__view img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+  .y2k-screen__placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: var(--y2k-1);
+    color: var(--y2k-ink);
+    background-color: var(--y2k-surface-alt);
+    background-image: radial-gradient(var(--y2k-lilac) 1.4px, transparent 1.6px);
+    background-size: 10px 10px;
+  }
+  /* phone variant — narrow portrait screen for mobile-app shots */
+  .y2k-screen--phone {
+    max-width: 230px;
+    margin-inline: auto;
+  }
+  .y2k-screen--phone .y2k-screen__view {
+    aspect-ratio: 10 / 16;
+  }
+
+  /* ---- Halftone dot fill (atmosphere for empty areas) ---- */
+  .y2k-halftone {
+    background-image: radial-gradient(
+      color-mix(in srgb, var(--y2k-ink) 22%, transparent) 1.4px,
+      transparent 1.6px
+    );
+    background-size: 12px 12px;
   }
 }

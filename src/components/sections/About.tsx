@@ -13,7 +13,20 @@ const SYSTEM_INFO: [key: string, value: string][] = [
 /** ABOUT — a readme/system-info window that introduces the person behind the OS. */
 export function About() {
   return (
-    <section id="about" className="px-6 py-24 sm:py-32">
+    <section id="about" className="relative px-6 py-24 sm:py-32">
+      <span
+        aria-hidden
+        className="font-display pointer-events-none absolute left-[7%] top-[18%] hidden -rotate-12 text-5xl text-y2k-mint [text-shadow:3px_3px_0_var(--y2k-ink)] lg:block"
+      >
+        ★
+      </span>
+      <span
+        aria-hidden
+        className="font-display pointer-events-none absolute right-[8%] bottom-[14%] hidden rotate-12 text-4xl text-y2k-butter [text-shadow:3px_3px_0_var(--y2k-ink)] lg:block"
+      >
+        ✿
+      </span>
+
       <div className="mx-auto max-w-3xl">
         <Reveal>
           <Window title="about_me.txt" role="region" tilt={-0.4}>

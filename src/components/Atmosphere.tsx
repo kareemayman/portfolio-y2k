@@ -5,6 +5,13 @@
 export function Atmosphere() {
   return (
     <>
+      {/* Dotted desktop wallpaper — sits behind everything (incl. the 3D canvas
+          at -z-10), so props float over a textured desktop, not flat lilac. */}
+      <div
+        aria-hidden
+        className="y2k-halftone pointer-events-none fixed inset-0"
+        style={{ zIndex: -20 }}
+      />
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 z-40"

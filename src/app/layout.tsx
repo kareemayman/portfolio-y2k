@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { SmoothScroll } from "@/components/scroll/SmoothScroll";
 import { Atmosphere } from "@/components/Atmosphere";
+import { Background3D } from "@/components/three/Background3D";
 import { Taskbar } from "@/components/y2k";
 
 const NAV = [
@@ -63,6 +64,7 @@ export default function RootLayout({
     >
       <body className="min-h-full">
         <SmoothScroll>
+          <Background3D />
           <Atmosphere />
           {children}
           <Taskbar sections={NAV} />

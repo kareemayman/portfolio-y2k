@@ -5,6 +5,7 @@ import "./globals.css";
 import { SmoothScroll } from "@/components/scroll/SmoothScroll";
 import { Atmosphere } from "@/components/Atmosphere";
 import { Background3D } from "@/components/three/Background3D";
+import { SceneAnchors } from "@/components/three/SceneAnchors";
 import { Taskbar } from "@/components/y2k";
 
 const NAV = [
@@ -38,7 +39,7 @@ const w95fa = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "KAREEM.OS — Kareem Ayman · Frontend Developer",
+  title: "KAREEM.OS",
   description:
     "The personal operating system of Kareem Ayman — a frontend developer building responsive, high-performance interfaces with React, Next.js & TypeScript. Boot up and look around.",
   authors: [{ name: "Kareem Ayman" }],
@@ -65,6 +66,7 @@ export default function RootLayout({
       <body className="min-h-full">
         <SmoothScroll>
           <Background3D />
+          <SceneAnchors />
           <Atmosphere />
           {children}
           <Taskbar sections={NAV} />

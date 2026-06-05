@@ -14,13 +14,13 @@ const TOYS: Toy[] = [
     blurb:
       "A skill-trading app (web + mobile) with AI-generated learning milestones, scheduling, chat and reviews.",
     stack: ["React Native", "Firebase", "Gemini"],
-    href: "https://github.com/kareemayman/skillswap",
+    href: "https://github.com/kareemayman/SkillSwap-Web",
   },
   {
     name: "Taskify",
     blurb: "A full-stack task manager built for team collaboration.",
     stack: ["React", "Redux", "Express", "JWT"],
-    href: "https://github.com/kareemayman/taskify",
+    href: "https://github.com/kareemayman/Task-Manager",
   },
   {
     name: "News & Blogs",

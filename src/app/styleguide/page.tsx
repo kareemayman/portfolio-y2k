@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Button, DesktopIcon, TextField, Taskbar, Window } from "@/components/y2k";
+import { Button, DesktopIcon, TextField, Window } from "@/components/y2k";
 
 export const metadata: Metadata = {
   title: "Styleguide · KAREEM.OS",
@@ -209,8 +209,6 @@ export default function Styleguide() {
         </Window>
       </div>
 
-      {/* The real taskbar, fixed to the bottom (primary nav in context) */}
-      <Taskbar />
     </main>
   );
 }

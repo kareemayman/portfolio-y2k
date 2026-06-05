@@ -2,6 +2,15 @@ import type { Metadata } from "next";
 import { Pixelify_Sans, Bricolage_Grotesque } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { SmoothScroll } from "@/components/scroll/SmoothScroll";
+import { Atmosphere } from "@/components/Atmosphere";
+import { Taskbar } from "@/components/y2k";
+
+const NAV = [
+  { label: "about_me.txt", href: "#about" },
+  { label: "projects/", href: "#work" },
+  { label: "contact.exe", href: "#contact" },
+];
 
 // Display — soft pixel face for hero, section titles, big numbers.
 const pixelify = Pixelify_Sans({
@@ -51,7 +60,13 @@ export default function RootLayout({
       lang="en"
       className={`${pixelify.variable} ${bricolage.variable} ${w95fa.variable} h-full`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        <SmoothScroll>
+          <Atmosphere />
+          {children}
+          <Taskbar sections={NAV} />
+        </SmoothScroll>
+      </body>
     </html>
   );
 }

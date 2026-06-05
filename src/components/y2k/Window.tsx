@@ -13,6 +13,8 @@ type WindowProps = {
   tilt?: number;
   /** A window with live focus management is a dialog; static content windows are regions. */
   role?: "dialog" | "region";
+  /** Heading level for the title, to keep the document outline correct. */
+  headingLevel?: 2 | 3;
   className?: string;
   bodyClassName?: string;
 };
@@ -37,10 +39,12 @@ export function Window({
   controls = true,
   tilt = -0.6,
   role = "dialog",
+  headingLevel = 2,
   className = "",
   bodyClassName = "",
 }: WindowProps) {
   const titleId = id ?? slug(title);
+  const Heading = `h${headingLevel}` as "h2" | "h3";
   return (
     <section
       className={`y2k-window ${className}`.trim()}
@@ -50,9 +54,9 @@ export function Window({
       style={{ transform: `rotate(${tilt}deg)` }}
     >
       <header className="y2k-titlebar">
-        <h2 id={titleId} className="y2k-titlebar__title">
+        <Heading id={titleId} className="y2k-titlebar__title">
           {title}
-        </h2>
+        </Heading>
         {controls && (
           <div className="y2k-titlebar__controls">
             <button type="button" aria-label="Minimize" className="y2k-ctrl">

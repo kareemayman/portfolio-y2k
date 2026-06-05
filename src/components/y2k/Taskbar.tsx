@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useLenis } from "lenis/react";
 import { Button } from "./Button";
 
 type Section = { label: string; href: string };
@@ -24,6 +25,7 @@ export function Taskbar({
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState("");
   const ref = useRef<HTMLDivElement>(null);
+  const lenis = useLenis();
 
   // Live clock — set on mount to avoid SSR/CSR hydration mismatch.
   useEffect(() => {
@@ -72,7 +74,12 @@ export function Taskbar({
                   role="menuitem"
                   className="y2k-startmenu__item"
                   href={s.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpen(false);
+                    const el = document.querySelector(s.href);
+                    if (el) lenis?.scrollTo(el as HTMLElement, { offset: -8 });
+                  }}
                 >
                   {s.label}
                 </a>

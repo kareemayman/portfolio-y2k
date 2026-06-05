@@ -94,6 +94,46 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Themed text selection */
+::selection {
+  background: var(--y2k-pink-hot);
+  color: #fff;
+  text-shadow: none;
+}
+
+/* Themed scrollbars — page + any overflow region.
+   Firefox-only standard props, isolated via @supports: setting
+   scrollbar-width/color in Chromium would DISABLE ::-webkit-scrollbar. */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--y2k-pink) var(--y2k-surface-alt);
+  }
+}
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+::-webkit-scrollbar-track {
+  background: var(--y2k-surface-alt);
+  border-left: var(--y2k-border);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--y2k-lilac);
+  border: var(--y2k-border);
+  border-radius: 4px;
+  box-shadow: var(--y2k-bevel-out);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--y2k-pink);
+}
+::-webkit-scrollbar-thumb:active {
+  background: var(--y2k-pink-hot);
+}
+::-webkit-scrollbar-corner {
+  background: var(--y2k-surface-alt);
+}
+
 /* Pixel/bitmap faces render crisp; smoothing OFF only on those elements. */
 .font-display,
 .font-chrome {
@@ -396,10 +436,7 @@ textarea,
     box-shadow: var(--y2k-shadow);
   }
 
-  /* ---- Retro scrollbar (opt-in via .y2k-scroll) ---- */
-  .y2k-scroll {
-    scrollbar-color: var(--y2k-pink) var(--y2k-surface-alt);
-  }
+  /* ---- Retro scrollbar (opt-in via .y2k-scroll; mirrors the global bar) ---- */
   .y2k-scroll::-webkit-scrollbar {
     width: 16px;
     height: 16px;

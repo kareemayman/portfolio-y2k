@@ -9,6 +9,7 @@ import { Taskbar } from "@/components/y2k";
 const NAV = [
   { label: "about_me.txt", href: "#about" },
   { label: "projects/", href: "#work" },
+  { label: "playground/", href: "#playground" },
   { label: "contact.exe", href: "#contact" },
 ];
 

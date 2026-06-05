@@ -29,7 +29,7 @@ export function About() {
                 <p>
                   These days I&rsquo;m at Meetus, where most of my time goes to
                   making things load faster and feel better to use. Away from the
-                  editor it&rsquo;s music, movies, and the occasional chart
+                  editor it&rsquo;s music, movies, and the occasional trading chart
                   &mdash; probably why I ended up on the visual side of
                   engineering.
                 </p>

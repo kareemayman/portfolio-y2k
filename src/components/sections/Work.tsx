@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/scroll/Reveal";
+import { HorizontalGallery } from "@/components/scroll/HorizontalGallery";
 import { Window } from "@/components/y2k";
 
 type Project = {
@@ -53,24 +54,27 @@ const PROJECTS: Project[] = [
   },
 ];
 
-/** WORK — projects, each opening like its own program window. */
+/** WORK — projects, each opening like its own program window, in a pinned
+ *  horizontal gallery (vertical column on mobile / reduced-motion). */
 export function Work() {
   return (
-    <section id="work" className="px-6 py-24 sm:py-32">
-      <div className="mx-auto max-w-5xl">
+    <section id="work" className="pt-24 pb-24 sm:pt-32 sm:pb-32">
+      <div className="mx-auto max-w-5xl px-6">
         <Reveal>
           <h2 className="font-display text-3xl text-y2k-ink sm:text-4xl">
             projects<span className="text-y2k-pink-hot">/</span>
           </h2>
           <p className="font-body mt-2 max-w-[60ch] text-y2k-ink/80">
-            A few things I&rsquo;ve shipped at Meetus. Double-click to open
-            &mdash; or just read along.
+            A few things I&rsquo;ve shipped at Meetus &mdash; scroll sideways, or
+            just read along.
           </p>
         </Reveal>
+      </div>
 
-        <div className="mt-10 grid items-start gap-8 md:grid-cols-2">
+      <div className="mt-10">
+        <HorizontalGallery>
           {PROJECTS.map((p, i) => (
-            <Reveal key={p.name} delay={i % 2 === 0 ? 0 : 0.08}>
+            <div key={p.name} className="hgal__card">
               <Window
                 title={p.name}
                 role="region"
@@ -101,9 +105,9 @@ export function Work() {
                   </a>
                 )}
               </Window>
-            </Reveal>
+            </div>
           ))}
-        </div>
+        </HorizontalGallery>
       </div>
     </section>
   );

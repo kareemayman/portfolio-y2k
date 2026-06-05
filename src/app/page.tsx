@@ -1,65 +1,98 @@
-import Image from "next/image";
-
+/*
+ * KAREEM.OS — Phase 1 placeholder.
+ * A static "boot" panel that proves the design tokens + three font roles
+ * (Pixelify display / W95FA chrome / Bricolage body) render on-brand.
+ * The full boot sequence, desktop, and scroll story land in later phases.
+ */
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="relative flex min-h-dvh items-center justify-center overflow-hidden p-6">
+      {/* atmosphere: scanlines + CRT vignette (non-interactive) */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 z-[1]"
+        style={{
+          background:
+            "repeating-linear-gradient(0deg, rgba(0,0,0,.05) 0 1px, transparent 1px 3px)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 z-[1]"
+        style={{
+          background:
+            "radial-gradient(120% 120% at 50% 50%, transparent 60%, var(--y2k-bg-deep) 100%)",
+        }}
+      />
+
+      {/* sticker accents bleeding past the panel */}
+      <span
+        aria-hidden
+        className="font-display pointer-events-none absolute left-[10%] top-[16%] -rotate-12 text-5xl text-y2k-pink-hot [text-shadow:3px_3px_0_var(--y2k-ink)]"
+      >
+        ✦
+      </span>
+      <span
+        aria-hidden
+        className="font-display pointer-events-none absolute right-[12%] bottom-[18%] rotate-12 text-4xl text-y2k-mint [text-shadow:3px_3px_0_var(--y2k-ink)]"
+      >
+        ❤
+      </span>
+
+      {/* boot window */}
+      <section className="relative z-[2] w-full max-w-xl -rotate-[0.6deg] rounded-[var(--y2k-radius)] border-2 border-y2k-ink bg-y2k-surface shadow-[var(--y2k-shadow)]">
+        <header
+          className="flex items-center justify-between rounded-t-[var(--y2k-radius)] border-b-2 border-y2k-ink px-2 py-1"
+          style={{ background: "var(--y2k-titlebar-active)" }}
+        >
+          <span className="font-chrome text-sm text-white [text-shadow:1px_1px_0_rgba(0,0,0,.4)]">
+            KAREEM.OS
+          </span>
+          <span className="flex gap-1" aria-hidden>
+            <span className="grid h-[18px] w-[18px] place-items-center border-2 border-y2k-ink bg-y2k-lilac font-chrome text-xs text-y2k-ink shadow-[var(--y2k-bevel-out)]">
+              _
+            </span>
+            <span className="grid h-[18px] w-[18px] place-items-center border-2 border-y2k-ink bg-y2k-lilac font-chrome text-[10px] text-y2k-ink shadow-[var(--y2k-bevel-out)]">
+              ▢
+            </span>
+            <span className="grid h-[18px] w-[18px] place-items-center border-2 border-y2k-ink bg-y2k-pink font-chrome text-xs text-y2k-ink shadow-[var(--y2k-bevel-out)]">
+              ×
+            </span>
+          </span>
+        </header>
+
+        <div className="px-6 py-8 sm:px-8">
+          <p className="font-chrome text-xs uppercase tracking-[0.2em] text-y2k-ink/70">
+            booting&hellip;
+          </p>
+
+          <h1 className="mt-2">
+            <span className="font-display block text-5xl leading-none text-y2k-ink sm:text-6xl">
+              KAREEM<span className="text-y2k-pink-hot">.OS</span>
+            </span>
+            <span className="font-chrome mt-3 block text-sm text-y2k-ink">
+              Kareem Ayman &middot; Frontend Developer
+            </span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <p className="font-body mt-5 max-w-[60ch] text-y2k-ink">
+            I spend my days making buttons feel nice to press. Some of them even
+            work.
+          </p>
+
+          <p className="font-chrome mt-6 flex items-center gap-2 text-sm text-y2k-ink">
+            scroll to start
+            <span className="blink" aria-hidden>
+              ▾
+            </span>
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        <footer className="flex items-center justify-between rounded-b-[var(--y2k-radius)] border-t-2 border-y2k-ink bg-y2k-surface-alt px-3 py-1 font-chrome text-xs text-y2k-ink">
+          <span>v0.1 &middot; phase 1</span>
+          <span>&copy; 2026 Kareem Ayman</span>
+        </footer>
+      </section>
+    </main>
   );
 }

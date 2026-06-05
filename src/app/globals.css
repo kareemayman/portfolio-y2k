@@ -1,26 +1,129 @@
 @import "tailwindcss";
 
+/* =====================================================================
+   KAREEM.OS — Y2K design tokens
+   Governed by the y2k-design-system skill. Never hard-code hex in
+   components; always reference these variables (or the Tailwind
+   utilities generated from them below).
+   ===================================================================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* surfaces */
+  --y2k-bg:          #c4b5f0; /* periwinkle/lilac desktop */
+  --y2k-bg-deep:     #a98fe0; /* depth / vignette edges */
+  --y2k-surface:     #ffffff; /* window fill — ALL reading surfaces */
+  --y2k-surface-alt: #f1ecff; /* sunken fields, alt rows */
+  --y2k-lilac:       #d7c8ff;
+
+  /* ink + lines (near-black; pure #000 only for hairlines) */
+  --y2k-ink:  #1c1530;
+  --y2k-line: #1c1530;
+
+  /* accents — lilac dominates; these are sharp pops only */
+  --y2k-pink:     #ff8fc7;
+  --y2k-pink-hot: #ff4fa0;
+  --y2k-mint:     #8fe8c4;
+  --y2k-butter:   #ffe08a;
+  --y2k-sky:      #8fb8ff;
+
+  /* chrome gradients — diegetic, title bars ONLY */
+  --y2k-titlebar-active:   linear-gradient(90deg, var(--y2k-pink-hot), var(--y2k-sky));
+  --y2k-titlebar-inactive: linear-gradient(90deg, var(--y2k-lilac), var(--y2k-surface-alt));
+
+  /* shape + depth — HARD shadows, no blur */
+  --y2k-radius:      6px;
+  --y2k-shadow:      4px 4px 0 var(--y2k-ink);
+  --y2k-shadow-pink: 4px 4px 0 var(--y2k-pink-hot);
+  --y2k-border:      2px solid var(--y2k-ink);
+
+  /* bevels for press feedback (authentic 9x feel, recolored) */
+  --y2k-bevel-out: inset -2px -2px 0 #b9a9e6, inset 2px 2px 0 #ffffff;
+  --y2k-bevel-in:  inset 2px 2px 0 #b9a9e6, inset -2px -2px 0 #ffffff;
+
+  /* spacing scale (tight + consistent) */
+  --y2k-1: 4px;
+  --y2k-2: 8px;
+  --y2k-3: 12px;
+  --y2k-4: 16px;
+  --y2k-6: 24px;
+  --y2k-8: 32px;
+
+  /* z-index — desktop < icons < windows < taskbar < cursor fx */
+  --z-desktop: 0;
+  --z-icons: 10;
+  --z-window: 100;
+  --z-window-active: 200;
+  --z-taskbar: 1000;
+  --z-cursor-fx: 2000;
 }
 
+/* Expose palette + font roles to Tailwind v4 utilities.
+   `inline` keeps the var() reference so runtime theming still works:
+   bg-y2k-lilac, text-y2k-ink, font-display, font-chrome, font-body, etc. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-y2k-bg:          var(--y2k-bg);
+  --color-y2k-bg-deep:     var(--y2k-bg-deep);
+  --color-y2k-surface:     var(--y2k-surface);
+  --color-y2k-surface-alt: var(--y2k-surface-alt);
+  --color-y2k-lilac:       var(--y2k-lilac);
+  --color-y2k-ink:         var(--y2k-ink);
+  --color-y2k-pink:        var(--y2k-pink);
+  --color-y2k-pink-hot:    var(--y2k-pink-hot);
+  --color-y2k-mint:        var(--y2k-mint);
+  --color-y2k-butter:      var(--y2k-butter);
+  --color-y2k-sky:         var(--y2k-sky);
+
+  /* font roles — values are injected by next/font on <html> */
+  --font-display: var(--font-pixelify), "Courier New", monospace;
+  --font-chrome:  var(--font-w95fa), "MS Sans Serif", Tahoma, sans-serif;
+  --font-body:    var(--font-bricolage), ui-sans-serif, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =====================================================================
+   Base
+   ===================================================================== */
+html {
+  background: var(--y2k-bg);
+  color: var(--y2k-ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Pixel/bitmap faces render crisp; smoothing OFF only on those elements. */
+.font-display,
+.font-chrome {
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+}
+
+/* Themed focus ring everywhere (a11y — survives the skin). */
+:focus-visible {
+  outline: 2px dotted var(--y2k-ink);
+  outline-offset: 2px;
+}
+
+/* Hard-edged caret blink (period flavor; neutralized under reduced motion). */
+@keyframes y2k-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.blink {
+  animation: y2k-blink 1s steps(1) infinite;
+}
+
+/* Reduced motion: the curated journey degrades to instant + static. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

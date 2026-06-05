@@ -10,7 +10,7 @@ export default function Home() {
       {/* atmosphere: scanlines + CRT vignette (non-interactive) */}
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 z-[1]"
+        className="pointer-events-none fixed inset-0 z-1"
         style={{
           background:
             "repeating-linear-gradient(0deg, rgba(0,0,0,.05) 0 1px, transparent 1px 3px)",
@@ -18,7 +18,7 @@ export default function Home() {
       />
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 z-[1]"
+        className="pointer-events-none fixed inset-0 z-1"
         style={{
           background:
             "radial-gradient(120% 120% at 50% 50%, transparent 60%, var(--y2k-bg-deep) 100%)",
@@ -40,22 +40,22 @@ export default function Home() {
       </span>
 
       {/* boot window */}
-      <section className="relative z-[2] w-full max-w-xl -rotate-[0.6deg] rounded-[var(--y2k-radius)] border-2 border-y2k-ink bg-y2k-surface shadow-[var(--y2k-shadow)]">
+      <section className="relative z-2 w-full max-w-xl rotate-[-0.6deg] rounded-(--y2k-radius) border-2 border-y2k-ink bg-y2k-surface shadow-(--y2k-shadow)">
         <header
-          className="flex items-center justify-between rounded-t-[var(--y2k-radius)] border-b-2 border-y2k-ink px-2 py-1"
+          className="flex items-center justify-between rounded-t-(--y2k-radius) border-b-2 border-y2k-ink px-2 py-1"
           style={{ background: "var(--y2k-titlebar-active)" }}
         >
           <span className="font-chrome text-sm text-white [text-shadow:1px_1px_0_rgba(0,0,0,.4)]">
             KAREEM.OS
           </span>
           <span className="flex gap-1" aria-hidden>
-            <span className="grid h-[18px] w-[18px] place-items-center border-2 border-y2k-ink bg-y2k-lilac font-chrome text-xs text-y2k-ink shadow-[var(--y2k-bevel-out)]">
+            <span className="grid h-[18px] w-[18px] place-items-center border-2 border-y2k-ink bg-y2k-lilac font-chrome text-xs text-y2k-ink shadow-(--y2k-bevel-out)">
               _
             </span>
-            <span className="grid h-[18px] w-[18px] place-items-center border-2 border-y2k-ink bg-y2k-lilac font-chrome text-[10px] text-y2k-ink shadow-[var(--y2k-bevel-out)]">
+            <span className="grid h-[18px] w-[18px] place-items-center border-2 border-y2k-ink bg-y2k-lilac font-chrome text-[10px] text-y2k-ink shadow-(--y2k-bevel-out)">
               ▢
             </span>
-            <span className="grid h-[18px] w-[18px] place-items-center border-2 border-y2k-ink bg-y2k-pink font-chrome text-xs text-y2k-ink shadow-[var(--y2k-bevel-out)]">
+            <span className="grid h-[18px] w-[18px] place-items-center border-2 border-y2k-ink bg-y2k-pink font-chrome text-xs text-y2k-ink shadow-(--y2k-bevel-out)">
               ×
             </span>
           </span>
@@ -88,7 +88,7 @@ export default function Home() {
           </p>
         </div>
 
-        <footer className="flex items-center justify-between rounded-b-[var(--y2k-radius)] border-t-2 border-y2k-ink bg-y2k-surface-alt px-3 py-1 font-chrome text-xs text-y2k-ink">
+        <footer className="flex items-center justify-between rounded-b-(--y2k-radius) border-t-2 border-y2k-ink bg-y2k-surface-alt px-3 py-1 font-chrome text-xs text-y2k-ink">
           <span>v0.1 &middot; phase 1</span>
           <span>&copy; 2026 Kareem Ayman</span>
         </footer>

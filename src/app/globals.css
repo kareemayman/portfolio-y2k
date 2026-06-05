@@ -127,3 +127,294 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* =====================================================================
+   Pixel cursors
+   SVG files in /public/cursors. Swap for .cur/.png to upgrade fidelity;
+   the variable wiring stays the same. Keyword fallback keeps the site
+   usable where SVG cursors aren't supported (e.g. some Safari versions).
+   ===================================================================== */
+:root {
+  --cur-arrow: url("/cursors/arrow.svg") 1 1, auto;
+  --cur-pointer: url("/cursors/hand.svg") 4 1, pointer;
+  --cur-beam: url("/cursors/beam.svg") 8 8, text;
+}
+html,
+body {
+  cursor: var(--cur-arrow);
+}
+a,
+button,
+[role="button"],
+summary,
+label[for],
+.y2k-icon,
+.y2k-btn,
+.y2k-ctrl,
+.y2k-startmenu__item {
+  cursor: var(--cur-pointer);
+}
+input,
+textarea,
+[contenteditable="true"] {
+  cursor: var(--cur-beam);
+}
+
+/* =====================================================================
+   Component kit — the OS chrome.
+   Token-driven; utilities (e.g. bg-y2k-mint) still override since the
+   utilities layer wins over components.
+   ===================================================================== */
+@layer components {
+  /* ---- Window ---- */
+  .y2k-window {
+    background: var(--y2k-surface);
+    border: var(--y2k-border);
+    border-radius: var(--y2k-radius);
+    box-shadow: var(--y2k-shadow);
+  }
+  .y2k-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--y2k-2);
+    padding: var(--y2k-1) var(--y2k-2);
+    background: var(--y2k-titlebar-active);
+    color: #fff;
+    border-bottom: var(--y2k-border);
+    border-radius: calc(var(--y2k-radius) - 2px) calc(var(--y2k-radius) - 2px) 0 0;
+  }
+  .y2k-titlebar__title {
+    font-family: var(--font-chrome);
+    font-size: 14px;
+    line-height: 1;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .y2k-window[data-inactive="true"] .y2k-titlebar {
+    background: var(--y2k-titlebar-inactive);
+    color: var(--y2k-ink);
+    text-shadow: none;
+  }
+  .y2k-titlebar__controls {
+    display: flex;
+    gap: var(--y2k-1);
+    flex: none;
+  }
+  .y2k-window__body {
+    padding: var(--y2k-4);
+  }
+
+  /* ---- Title-bar controls ---- */
+  .y2k-ctrl {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 18px;
+    border: var(--y2k-border);
+    border-radius: 3px;
+    background: var(--y2k-lilac);
+    color: var(--y2k-ink);
+    box-shadow: var(--y2k-bevel-out);
+    font-family: var(--font-chrome);
+    font-size: 11px;
+    line-height: 1;
+  }
+  .y2k-ctrl:active {
+    box-shadow: var(--y2k-bevel-in);
+    transform: translate(1px, 1px);
+  }
+  .y2k-ctrl--close {
+    background: var(--y2k-pink);
+  }
+
+  /* ---- Button ---- */
+  .y2k-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--y2k-2);
+    padding: var(--y2k-2) var(--y2k-4);
+    font-family: var(--font-chrome);
+    font-size: 14px;
+    line-height: 1;
+    color: var(--y2k-ink);
+    background: var(--y2k-lilac);
+    border: var(--y2k-border);
+    border-radius: var(--y2k-radius);
+    box-shadow: var(--y2k-bevel-out);
+    transition: transform 0.08s steps(2), box-shadow 0.08s;
+    user-select: none;
+  }
+  .y2k-btn:hover {
+    transform: translate(-1px, -1px);
+  }
+  .y2k-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: var(--y2k-bevel-in);
+  }
+  .y2k-btn--primary {
+    background: var(--y2k-pink);
+  }
+  .y2k-btn--mint {
+    background: var(--y2k-mint);
+  }
+  .y2k-btn:disabled {
+    opacity: 0.5;
+    transform: none;
+    box-shadow: var(--y2k-bevel-out);
+  }
+
+  /* ---- Text field ---- */
+  .y2k-field {
+    width: 100%;
+    padding: var(--y2k-2) var(--y2k-3);
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--y2k-ink);
+    background: var(--y2k-surface);
+    border: var(--y2k-border);
+    border-radius: 3px;
+    box-shadow: var(--y2k-bevel-in);
+  }
+  .y2k-field::placeholder {
+    color: color-mix(in srgb, var(--y2k-ink) 45%, transparent);
+  }
+  .y2k-label {
+    display: block;
+    margin-bottom: var(--y2k-1);
+    font-family: var(--font-chrome);
+    font-size: 12px;
+    color: var(--y2k-ink);
+  }
+
+  /* ---- Taskbar + Start ---- */
+  .y2k-taskbar {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: var(--z-taskbar);
+    display: flex;
+    align-items: center;
+    gap: var(--y2k-2);
+    padding: var(--y2k-1) var(--y2k-2);
+    background: var(--y2k-lilac);
+    border-top: var(--y2k-border);
+    box-shadow: var(--y2k-bevel-out);
+  }
+  .y2k-start {
+    font-weight: 700;
+    background: var(--y2k-mint);
+  }
+  .y2k-clock {
+    margin-left: auto;
+    padding: 2px 8px;
+    font-family: var(--font-chrome);
+    font-size: 13px;
+    color: var(--y2k-ink);
+    background: var(--y2k-surface-alt);
+    border: var(--y2k-border);
+    border-radius: 3px;
+    box-shadow: var(--y2k-bevel-in);
+  }
+
+  /* ---- Start menu ---- */
+  .y2k-startmenu {
+    position: absolute;
+    bottom: calc(100% + var(--y2k-2));
+    left: 0;
+    min-width: 210px;
+    padding: var(--y2k-1);
+    background: var(--y2k-surface);
+    border: var(--y2k-border);
+    border-radius: var(--y2k-radius);
+    box-shadow: var(--y2k-shadow);
+  }
+  .y2k-startmenu__item {
+    display: flex;
+    align-items: center;
+    gap: var(--y2k-2);
+    width: 100%;
+    padding: var(--y2k-2) var(--y2k-3);
+    font-family: var(--font-chrome);
+    font-size: 14px;
+    color: var(--y2k-ink);
+    border-radius: 3px;
+    text-align: left;
+  }
+  .y2k-startmenu__item:hover,
+  .y2k-startmenu__item:focus-visible {
+    background: var(--y2k-titlebar-active);
+    color: #fff;
+    outline: none;
+  }
+
+  /* ---- Desktop icon ---- */
+  .y2k-icon {
+    display: grid;
+    gap: var(--y2k-1);
+    justify-items: center;
+    width: 84px;
+    padding: var(--y2k-2);
+    color: var(--y2k-ink);
+    border-radius: var(--y2k-radius);
+    text-align: center;
+  }
+  .y2k-icon__glyph {
+    font-size: 34px;
+    line-height: 1;
+    filter: drop-shadow(2px 2px 0 var(--y2k-ink));
+  }
+  .y2k-icon__label {
+    padding: 1px 4px;
+    font-family: var(--font-chrome);
+    font-size: 12px;
+    border-radius: 2px;
+  }
+  .y2k-icon:hover .y2k-icon__label {
+    background: color-mix(in srgb, var(--y2k-pink) 55%, transparent);
+  }
+  .y2k-icon:focus-visible {
+    outline: none;
+  }
+  .y2k-icon:focus-visible .y2k-icon__label,
+  .y2k-icon[aria-selected="true"] .y2k-icon__label {
+    background: var(--y2k-pink);
+    outline: 1px dotted var(--y2k-ink);
+  }
+
+  /* ---- Tooltip / status ---- */
+  .y2k-tooltip {
+    display: inline-block;
+    padding: 2px 8px;
+    font-family: var(--font-chrome);
+    font-size: 12px;
+    color: var(--y2k-ink);
+    background: var(--y2k-butter);
+    border: var(--y2k-border);
+    border-radius: 3px;
+    box-shadow: var(--y2k-shadow);
+  }
+
+  /* ---- Retro scrollbar (opt-in via .y2k-scroll) ---- */
+  .y2k-scroll {
+    scrollbar-color: var(--y2k-pink) var(--y2k-surface-alt);
+  }
+  .y2k-scroll::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+  .y2k-scroll::-webkit-scrollbar-track {
+    background: var(--y2k-surface-alt);
+    border-left: var(--y2k-border);
+  }
+  .y2k-scroll::-webkit-scrollbar-thumb {
+    background: var(--y2k-lilac);
+    border: var(--y2k-border);
+    border-radius: 3px;
+    box-shadow: var(--y2k-bevel-out);
+  }
+  .y2k-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--y2k-pink);
+  }
+}
